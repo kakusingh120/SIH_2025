@@ -4,6 +4,9 @@ const app = express();
 const { PORT } = require('./config/server.config');
 const apiRoute = require("./routes/index");
 const db = require('./models/index');
+const cors = require("cors");
+
+
 
 
 
@@ -14,6 +17,8 @@ const setupAndStartServer = async () => {
         // middleware setup
         app.use(express.json());
         app.use(express.urlencoded({ extended: true }));
+        app.use(cors({ origin: "*", credentials: true })); // adjust port
+        app.use(express.json());
 
         // routes
         app.use('/api', apiRoute);
